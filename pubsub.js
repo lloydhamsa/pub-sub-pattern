@@ -5,12 +5,16 @@ export default class PubSub {
   }
 
   subscribe(subscriber){
-    // add the subscriber to existing list
+    if(typeof subscriber !== 'function'){
+      throw new Error(`${typeof subscriber} is not a valid argument for subscribe method, expected a function instead`)
+    }
     this.subscribers = [...this.subscribers, subscriber]
   }
 
   unsubscribe(subscriber){
-   // remove the subscriber from existing list
+    if(typeof subscriber !== 'function'){
+      throw new Error(`${typeof subscriber} is not a valid argument for unsubscribe method, expected a function instead`)
+    }
     this.subscribers = this.subscribers.filter(sub => sub!== subscriber)
   }
 
